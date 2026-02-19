@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="C:\Users\dunca\OneDrive\Documents\GitRepos\app tracker web\styleSheet.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styleSheet.css') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,18 @@
         <div id="data_viewing">
             <p>Statistics</p>
             <div>
-                <p>applied: {{ applied }}</p>
-                <p>Rejected: {{ Rejected }}</p>
-                <p>Interviewed: {{ Interviewed }}</p>
+                <div class="stat-card">
+                    <h3>Applied</h3>
+                    <p>{{ applied }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Rejected</h3>
+                    <p>{{ Rejected }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Interviewed</h3>
+                    <p>{{ Interviewed }}</p>
+                </div>
             </div>
         </div>
         <div id="gui">
