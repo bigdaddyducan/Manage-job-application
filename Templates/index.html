@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="{{ url_for('static', filename='styleSheet.css') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleSheet.css') }}">
     <title>Job Application tracker</title>
 </head>
 <body>
-    <div id= "searching">
+    <div id= "searching_div">
         <div id="searching">
             <search>
                 <label>
@@ -25,17 +25,18 @@
                 </div>
                 <div class="stat-card">
                     <h3>Rejected</h3>
-                    <p>{{ Rejected }}</p>
+                    <p>{{ rejected }}</p>
                 </div>
                 <div class="stat-card">
                     <h3>Interviewed</h3>
-                    <p>{{ Interviewed }}</p>
+                    <p>{{ interviewed }}</p>
                 </div>
             </div>
         </div>
         <div id="gui">
-        <p></p>
+        <canvas id="myChart"></canvas>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </div>
     <div>
         <table>
