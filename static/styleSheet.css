@@ -36,6 +36,30 @@ body {
     color: #94a3b8;
 }
 
+/* ===== Search Button Styling ===== */
+#searching button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#searching button:nth-child(2) {
+    /* Optional: alternate gradient if you have multiple buttons */
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+}
+
+#searching button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #06b6d4, #3b82f6); /* subtle hover gradient change */
+}
+
 /* ===== Stats Section ===== */
 #stats_chart_container {
     display: flex;
