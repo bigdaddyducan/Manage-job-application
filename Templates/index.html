@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styleSheet.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
     <title>Job Application tracker</title>
 </head>
 <body>
@@ -16,27 +17,27 @@
                 </label>
             </search>
         </div>
-        <div id="data_viewing">
-            <p>Statistics</p>
-            <div>
-                <div class="stat-card">
-                    <h3>Applied</h3>
-                    <p>{{ applied }}</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Rejected</h3>
-                    <p>{{ rejected }}</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Interviewed</h3>
-                    <p>{{ interviewed }}</p>
-                </div>
-            </div>
+        <div id="stats_chart_container">
+    <div id="data_viewing">
+        <div class="stat-card">
+            <h3>Applied</h3>
+            <p>{{ applied }}</p>
         </div>
-        <div id="gui">
-        <canvas id="myChart"></canvas>
+        <div class="stat-card">
+            <h3>Rejected</h3>
+            <p>{{ rejected }}</p>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <div class="stat-card">
+            <h3>Interviewed</h3>
+            <p>{{ interviewed }}</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <!-- Your donut chart canvas goes here -->
+        <canvas id="myDonutChart"></canvas>
+    </div>
+</div>
     </div>
     <div>
         <table>
@@ -54,5 +55,45 @@
             {% endfor %}
         </table>
     </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const Applied = JSON.parse('{{ applied|safe }}');
+    const Rejected = JSON.parse('{{ rejected|safe }}');
+    const Interviewed = JSON.parse('{{ interviewed|safe }}');
+
+    const ctx = document.getElementById('myDonutChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Applied', 'Rejected', 'Interviewed'],
+            datasets: [{
+                data: [Applied, Rejected, Interviewed],
+                backgroundColor: [
+                    '#8b5cf6',
+                    '#ef4444',
+                    '#06b6d4'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+
+});
+</script>
+
 </body>
 </html>
